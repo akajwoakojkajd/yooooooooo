@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>🤓🫵🏼 YOU</title>
+<title>🤓🫵🏼 mp</title>
 
 <style>
 * {
@@ -23,16 +23,27 @@ body {
 }
 
 body.shake {
-  animation: shake 0.35s;
+  animation: shake 0.4s;
+}
+
+body.success {
+  animation: celebration 0.8s;
 }
 
 @keyframes shake {
   0% { transform: translate(0); }
-  20% { transform: translate(-8px, 5px); }
-  40% { transform: translate(8px, -5px); }
-  60% { transform: translate(-5px, -3px); }
-  80% { transform: translate(5px, 4px); }
+  20% { transform: translate(-10px, 6px); }
+  40% { transform: translate(10px, -6px); }
+  60% { transform: translate(-7px, -4px); }
+  80% { transform: translate(7px, 4px); }
   100% { transform: translate(0); }
+}
+
+@keyframes celebration {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.03) rotate(-1deg); }
+  60% { transform: scale(0.98) rotate(1deg); }
+  100% { transform: scale(1); }
 }
 
 header {
@@ -134,6 +145,7 @@ button:active {
   from {
     transform: rotate(-8deg) scale(0.9);
   }
+
   to {
     transform: rotate(8deg) scale(1.05);
   }
@@ -164,12 +176,12 @@ footer {
 
 @keyframes fly {
   0% {
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(0) rotate(0deg) scale(1);
     opacity: 1;
   }
 
   100% {
-    transform: translateY(-500px) rotate(720deg);
+    transform: translateY(-500px) rotate(720deg) scale(1.5);
     opacity: 0;
   }
 }
@@ -195,13 +207,153 @@ footer {
   100% { width: 100%; }
 }
 
-/* Runaway button */
+/* Chinese test */
+
+.chinese-section {
+  margin-top: 70px;
+  padding: 30px 20px;
+  background: white;
+  border: 4px solid #111;
+  box-shadow: 8px 8px 0 #111;
+}
+
+.chinese-section h2 {
+  font-size: 32px;
+  margin-top: 0;
+}
+
+.question {
+  font-size: 27px;
+  font-weight: bold;
+  margin: 25px 0;
+}
+
+.answers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.answer {
+  font-size: 20px;
+  padding: 18px;
+}
+
+.correct {
+  animation: correct 0.7s;
+}
+
+.wrong {
+  animation: wrong 0.5s;
+}
+
+@keyframes correct {
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.2) rotate(5deg);
+  }
+
+  70% {
+    transform: scale(0.9) rotate(-5deg);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes wrong {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-15px); }
+  50% { transform: translateX(15px); }
+  75% { transform: translateX(-10px); }
+  100% { transform: translateX(0); }
+}
+
+#testResult {
+  margin-top: 25px;
+  min-height: 50px;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+/* Social credits */
+
+#credits {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.82);
+  z-index: 10000;
+}
+
+.creditsBox {
+  background: white;
+  border: 6px solid #111;
+  padding: 35px 25px;
+  max-width: 700px;
+  width: 90%;
+  box-shadow: 15px 15px 0 #111;
+  animation: creditsPop 0.5s;
+}
+
+.creditsTitle {
+  font-size: 42px;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.social {
+  font-size: 34px;
+  font-weight: 900;
+  margin: 20px 0;
+  animation: socialPop 0.7s infinite alternate;
+}
+
+@keyframes creditsPop {
+  0% {
+    transform: scale(0) rotate(-10deg);
+  }
+
+  70% {
+    transform: scale(1.1) rotate(3deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes socialPop {
+  from {
+    transform: scale(1) rotate(-2deg);
+  }
+
+  to {
+    transform: scale(1.12) rotate(2deg);
+  }
+}
+
+.closeCredits {
+  padding: 14px 25px;
+  font-size: 18px;
+}
+
+/* Runaway */
 
 #runaway {
   position: relative;
 }
 
 @media (max-width: 500px) {
+
   header h1 {
     font-size: 30px;
   }
@@ -210,8 +362,20 @@ footer {
     grid-template-columns: 1fr 1fr;
   }
 
+  .answers {
+    grid-template-columns: 1fr;
+  }
+
+  .question {
+    font-size: 23px;
+  }
+
   button {
     font-size: 14px;
+  }
+
+  .social {
+    font-size: 25px;
   }
 }
 </style>
@@ -328,6 +492,49 @@ Catch Me
 Press a button. 🤓🫵🏼
 </div>
 
+
+<!-- CHINESE TEST -->
+
+<section class="chinese-section">
+
+<h2>🇨🇳 RANDOM CHINESE TEST 🤓</h2>
+
+<p>
+No studying. No preparation.<br>
+Just click something and pray.
+</p>
+
+<div class="question" id="question">
+你好 means...
+</div>
+
+<div class="answers" id="answers">
+
+<button class="answer" onclick="answer(false,this)">
+A. Goodbye 👋
+</button>
+
+<button class="answer" onclick="answer(true,this)">
+B. Hello 👋
+</button>
+
+<button class="answer" onclick="answer(false,this)">
+C. Pizza 🍕
+</button>
+
+<button class="answer" onclick="answer(false,this)">
+D. Temu worker 📦
+</button>
+
+</div>
+
+<div id="testResult">
+Choose your destiny. 🤓
+</div>
+
+</section>
+
+
 <div class="big">
 🤓🫵🏼
 </div>
@@ -343,18 +550,52 @@ You have reached the end.<br><br>
 🤓 ...or have you? 🫵🏼
 </footer>
 
+
+<!-- SOCIAL CREDIT POPUP -->
+
+<div id="credits">
+
+<div class="creditsBox">
+
+<div class="creditsTitle">
+🎉🇨🇳 CONGRATULATIONS 🇨🇳🎉
+</div>
+
+<div class="social">
++100000 social credits 😂😂🤓
+</div>
+
+<div style="font-size:24px;">
+你太聪明了 🧠<br><br>
+U have achieved absolute greatness.
+</div>
+
+<br>
+
+<button class="closeCredits" onclick="closeCredits()">
+I am extremely intelligent 🗿
+</button>
+
+</div>
+
+</div>
+
+
 <script>
 
 let clicks = 0;
 
 function countClick() {
+
   clicks++;
+
   document.getElementById("clicks").textContent = clicks;
 
   if (clicks % 5 === 0) {
     spawnEmoji();
   }
 }
+
 
 function show(message) {
 
@@ -377,6 +618,7 @@ function show(message) {
   spawnEmoji();
 }
 
+
 function temu() {
 
   countClick();
@@ -391,6 +633,7 @@ function temu() {
 
   shake();
 }
+
 
 function temu2() {
 
@@ -407,6 +650,7 @@ function temu2() {
   spawnMany();
 }
 
+
 function temu3() {
 
   countClick();
@@ -416,7 +660,7 @@ function temu3() {
       👷
       <br><br>
       PROCESSING JOB APPLICATION...
-      
+
       <div class="loading">
         <div class="loading-bar"></div>
       </div>
@@ -429,6 +673,7 @@ function temu3() {
 
   shake();
 }
+
 
 function computer() {
 
@@ -449,6 +694,7 @@ function computer() {
   shake();
 }
 
+
 function brain() {
 
   countClick();
@@ -458,7 +704,7 @@ function brain() {
       🧠
       <br><br>
       Loading intelligence...
-      
+
       <div class="loading">
         <div class="loading-bar"></div>
       </div>
@@ -469,6 +715,7 @@ function brain() {
     </div>
   `;
 }
+
 
 function win() {
 
@@ -486,6 +733,7 @@ function win() {
 
   spawnMany();
 }
+
 
 function randomMessage() {
 
@@ -509,6 +757,7 @@ function randomMessage() {
   show(message);
 }
 
+
 function runAway() {
 
   countClick();
@@ -525,6 +774,7 @@ function runAway() {
     "HAHA u missed. 🤓🫵🏼";
 }
 
+
 function shake() {
 
   document.body.classList.remove("shake");
@@ -533,6 +783,7 @@ function shake() {
 
   document.body.classList.add("shake");
 }
+
 
 function spawnEmoji() {
 
@@ -546,7 +797,9 @@ function spawnEmoji() {
     "📦",
     "💀",
     "🧠",
-    "🛒"
+    "🛒",
+    "😂",
+    "🇨🇳"
   ];
 
   emoji.textContent =
@@ -564,11 +817,172 @@ function spawnEmoji() {
   }, 1500);
 }
 
+
 function spawnMany() {
 
-  for (let i = 0; i < 15; i++) {
-    setTimeout(spawnEmoji, i * 100);
+  for (let i = 0; i < 25; i++) {
+    setTimeout(spawnEmoji, i * 80);
   }
+}
+
+
+/* CHINESE TEST */
+
+let questionNumber = 0;
+
+const questions = [
+
+  {
+    q: "你好 means...",
+    answers: [
+      "Goodbye 👋",
+      "Hello 👋",
+      "Pizza 🍕",
+      "Temu worker 📦"
+    ],
+    correct: 1
+  },
+
+  {
+    q: "谢谢 means...",
+    answers: [
+      "Thank you 🙏",
+      "Run 🏃",
+      "Dog 🐕",
+      "Calculator 🧮"
+    ],
+    correct: 0
+  },
+
+  {
+    q: "猫 means...",
+    answers: [
+      "Cat 🐱",
+      "Car 🚗",
+      "Teacher 👨‍🏫",
+      "Chair 🪑"
+    ],
+    correct: 0
+  },
+
+  {
+    q: "我 means...",
+    answers: [
+      "You 🫵🏼",
+      "I / Me 🤓",
+      "Temu 📦",
+      "Banana 🍌"
+    ],
+    correct: 1
+  },
+
+  {
+    q: "再见 means...",
+    answers: [
+      "Hello",
+      "Thank you",
+      "Goodbye 👋",
+      "Social credits 😂"
+    ],
+    correct: 2
+  }
+
+];
+
+
+function answer(correct, button) {
+
+  countClick();
+
+  if (correct) {
+
+    button.classList.add("correct");
+
+    document.getElementById("testResult").innerHTML =
+      "✅ CORRECT 🤓🫵🏼";
+
+    success();
+
+    setTimeout(() => {
+      document.getElementById("credits").style.display = "flex";
+    }, 500);
+
+  } else {
+
+    button.classList.add("wrong");
+
+    document.getElementById("testResult").innerHTML =
+      "❌ WRONG 😂😂<br>你完了。";
+
+    shake();
+
+    spawnMany();
+
+    setTimeout(() => {
+      button.classList.remove("wrong");
+    }, 600);
+  }
+
+}
+
+
+function success() {
+
+  document.body.classList.add("success");
+
+  spawnMany();
+
+  setTimeout(() => {
+    document.body.classList.remove("success");
+  }, 900);
+
+}
+
+
+function closeCredits() {
+
+  document.getElementById("credits").style.display = "none";
+
+  nextQuestion();
+}
+
+
+function nextQuestion() {
+
+  questionNumber++;
+
+  if (questionNumber >= questions.length) {
+    questionNumber = 0;
+  }
+
+  const q = questions[questionNumber];
+
+  document.getElementById("question").textContent = q.q;
+
+  const answers = document.getElementById("answers");
+
+  answers.innerHTML = "";
+
+  q.answers.forEach((text, index) => {
+
+    const button = document.createElement("button");
+
+    button.className = "answer";
+
+    button.textContent = text;
+
+    button.onclick = function() {
+
+      answer(index === q.correct, button);
+
+    };
+
+    answers.appendChild(button);
+
+  });
+
+  document.getElementById("testResult").textContent =
+    "Choose your destiny. 🤓";
 }
 
 </script>
@@ -576,3 +990,4 @@ function spawnMany() {
 </body>
 </html>
 ```
+
